@@ -6,7 +6,9 @@ import java.net.DatagramSocket;
 import java.util.Random;
 
 public class GestorProcesos extends Thread{
-    private static int numeroSecreto = new Random().nextInt(0, 100);
+
+    //Declaracion de varibles
+    private static int numeroSecreto = (int) (Math.random()*100+1);   //Generamos un numero secreto random
     DatagramSocket socket;
     DatagramPacket packet;
 
@@ -21,6 +23,10 @@ public class GestorProcesos extends Thread{
         numeroSecreto();
     }
 
+    /**
+     * Método que va a recibir el numero del cliente y va comprobar si es igual que el numero secreto
+     * mandando un mensaje en consecuencia
+     */
     public void numeroSecreto() {
 
         //Recibo el numero del cliente
@@ -38,14 +44,20 @@ public class GestorProcesos extends Thread{
         }
     }
 
+    /**
+     * Método que compara el
+     * @param num que es introducido por el usuario (ClienteTCP) con el
+     * @param numeroSecreto que es generado aleatoriamente y nos
+     * @return un mensaje según el numero del cliente es mayor, menor o igual que el numero secreto.
+     */
     public static String comprobarNumero(int num, int numeroSecreto) {
         String resultado;
         if (num == numeroSecreto) {
-            resultado = "¡Enhorabuena! Has acertado el número";
+            resultado = "ENHORABUENA, HA ACERTADO!";
         } else if (num < numeroSecreto) {
-            resultado = "El número mandado es menor que el número secreto";
+            resultado = "El numero es menor que el numero secreto";
         } else {
-            resultado = "El número mandado es mayor que el número secreto";
+            resultado = "El numero es mayor que el numero secreto";
         }
         return resultado;
     }

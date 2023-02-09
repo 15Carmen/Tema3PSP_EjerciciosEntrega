@@ -5,15 +5,15 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.SocketException;
 
-public class Servidor {
+public class ServidorUDP {
 
     public static void main(String[] args) throws IOException {
-        DatagramSocket socket = null;
+        DatagramSocket socket;
         String mensajeRecibido;
         try {
             // 1 - Crear DatagramSocket y le indicamos el puerto
-            System.out.println("(Servidor) Creando socket...");
-            socket = new DatagramSocket(150303);
+            System.out.println("(ServidorTCP) Creando socket...");
+            socket = new DatagramSocket(41700);
 
             while (true) {
                 // 2 - Crear array de bytes que actuará de buffer
@@ -23,7 +23,7 @@ public class Servidor {
                 DatagramPacket datagramaEntrada = new DatagramPacket(buffer, buffer.length);
 
                 // 4 - Recepción del datagrama mediante el método receive
-                System.out.println("(Servidor) Esperando peticiones...");
+                System.out.println("(ServidorTCP) Esperando peticiones...");
                 socket.receive(datagramaEntrada);
 
                 new GestorProcesos(socket, datagramaEntrada).start();
